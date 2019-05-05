@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+
+@inject SignInManager<IdentityUser> SignInManager
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"><!--responsavel por pegar a fonte correta-->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" /><!--responsavel pelo bootstrap-->
+    <link rel="stylesheet" href="~/content/site.css" /><!--responsavel por usar o nosso arquivo css-->
+    <script src="~/lib/jquery/dist/jquery.js"></script><!--Jquery necessario para o bootstrap-->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script><!--javascript necessario para o bootstrap-->
+</head>
+<body>
+    <!--Adiciona uma barra de navegacao fixada no topo da janela-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Bethany's Pie Shop</a></li>
+                    <li><a asp-controller="Feedback" asp-action="Index">Feedback</a></li>
+
+                </ul>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                          method="post" class="navbar-right"> 
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a>Welcome </a></li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        </ul>
+                    </form>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+                    </ul>
+
+                }
+
+            </div>
+        </div>
+    </nav>
+    <!--Fim da barra de navegacao-->
+
+    <!--Adiciona a logo no lead da pagina responsivamente-->
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead">
+                    <img class="img-responsive" alt="Bethany´s Pie Shop'" src="~/images/bethanylogo.png" />
+                    </p>
+                </div>
+            <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+        </div>
+    <!--Fim da logo-->
+</body>
+</html>

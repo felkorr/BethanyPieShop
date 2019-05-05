@@ -1,0 +1,48 @@
+﻿@model BethanysPieShop.Models.Feedback
+    
+
+
+<form asp-action="Index" asp-controller="Feedback" method="post" class="form-horizontal" role="form">
+    <!--usando metodo "post" para postar um feedback-->
+
+    
+
+    <div class="form-group">
+        <label asp-for="Name" class="col-md-2 control-label"></label><!--usando uma label que seja atribuida ao campo name-->
+        <div class="col-md-5">
+            <input asp-for="Name" class="form-control" /><!--input é um tag helper que irá capturar o que for digitado dentro do campo e linkado a propriedade Name dentro da classe-->
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Message" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <textarea asp-for="Message" class="form-control"></textarea>
+            <span asp-validation-for="Message" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactMe" class="col-md-2 control-label">Contact Me</label>
+        <div class="col-md-5">
+            <input type="checkbox" asp-for="ContactMe" class="form-control" /><!--aqui se usa o input do tipo checkbox(na classe é um bool) para capturar a resposta do usuario-->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Send feedback" /><!--Adiciona um botao com a funcao de submit-->
+        </div>
+    </div>
+
+
+</form>
